@@ -9,6 +9,19 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
+const contactEmail = 'oopsinfokh@gmail.com';
+const gmailComposeUrl = `https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${encodeURIComponent(contactEmail)}&su=${encodeURIComponent('Sports Creative Project Inquiry')}&body=${encodeURIComponent("Hello, I'm interested in working with you on a sports creative project.")}`;
+const mailtoUrl = `mailto:${contactEmail}?subject=${encodeURIComponent('Sports Creative Project Inquiry')}`;
+
+document.querySelectorAll('a[href*="mail.google.com"]').forEach((link) => {
+  link.href = gmailComposeUrl;
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const gmailWindow = window.open(gmailComposeUrl, '_blank');
+    if (!gmailWindow) window.location.href = mailtoUrl;
+  });
+});
+
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightbox-image');
 const closeButton = document.querySelector('.lightbox-close');
